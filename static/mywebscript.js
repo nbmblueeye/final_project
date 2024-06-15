@@ -1,5 +1,4 @@
 let RunSentimentAnalysis = ()=>{
-    console.log("From final oproject")
     textToAnalyze = document.getElementById("textToAnalyze").value;
 
     let xhttp = new XMLHttpRequest();

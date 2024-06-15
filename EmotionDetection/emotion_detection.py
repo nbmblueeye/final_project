@@ -7,6 +7,8 @@ def emotion_detector(text_to_analyze):
     input_json = { "raw_document": { "text": text_to_analyze } }
     
     response = requests.post(url, headers=headers, json=input_json)
+    console.log(response.status_code);
+
     result = response.json()
     emotion_predictions = result.get('emotionPredictions')
 

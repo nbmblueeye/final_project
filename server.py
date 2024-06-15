@@ -12,7 +12,6 @@ def detect_emotion():
 
     # Get response Data from Server
     emotions = emotion_detector(text_to_analyze)
-    print(emotions)
     if emotions:
         response = {
             "anger": emotions["anger"],
@@ -25,13 +24,13 @@ def detect_emotion():
 
         responseText = f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']} and 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}." 
 
-        return render_template('index.html', responseText=responseText), 200
+        return (responseText), 200
     else:
-        return render_template('index.html', responseText="No emotions detected."), 400
+        return ("No emotions detected."), 400
 
 @app.route("/")
 def index():
     return render_template("index.html")
-
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
