@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 from EmotionDetection import emotion_detector
-import os
 
 # Define the template directory
 app = Flask(__name__)
@@ -12,10 +11,11 @@ def detect_emotion():
 
     # Get response Data from Server
     emotions = emotion_detector(text_to_analyze)
-
+    
     # Check for response with None value
     if emotions["dominant_emotion"] == None:
-        return ("Invalid text! Please try again!."), 400
+        responseText = "Invalid text! Please try again!."
+        return responseText
     else:
         response = {
             "anger": emotions["anger"],
@@ -28,7 +28,7 @@ def detect_emotion():
 
         # Create result response text
         responseText = f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']} and 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}." 
-        return (responseText), 200
+        return responseText
 
 @app.route("/")
 def index():

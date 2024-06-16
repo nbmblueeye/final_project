@@ -1,5 +1,6 @@
 import json
 import requests
+from flask import jsonify
 
 def emotion_detector(text_to_analyze):
 
@@ -20,9 +21,8 @@ def emotion_detector(text_to_analyze):
                 'joy': None,
                 'sadness': None,
                 'dominant_emotion': None,
-                'message': 'Empty text provided'
             }
-            return (response_none), response.status_code
+            return response_none
 
         result = response.json()
         emotion_predictions = result.get('emotionPredictions',[])
@@ -44,8 +44,7 @@ def emotion_detector(text_to_analyze):
         
             ## Add dominant_emotion to the emotion dictionary
             emotions['dominant_emotion'] = dominant_emotion
-            print(emotions)
-            return emotions, response.status_code
+            return emotions
     
     except requests.exceptions.RequestException as e:
         response_none = {
@@ -57,5 +56,5 @@ def emotion_detector(text_to_analyze):
             'dominant_emotion': None,
             'message': f'Request error: {str(e)}'
         }
-        return response_none, response.status_code  
+        return response_none
   
