@@ -1,3 +1,6 @@
+"""
+Testing Emotion Detection file used Test case
+"""
 import unittest
 from EmotionDetection import emotion_detector
 
